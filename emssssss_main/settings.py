@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'employee.apps.EmssssssConfig',
     'emsssss',
+    'users',
+    'attendance',
 ]
 
 MIDDLEWARE = [
@@ -129,6 +131,8 @@ MEDIA_URL = 'media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media_root")
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'base'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
