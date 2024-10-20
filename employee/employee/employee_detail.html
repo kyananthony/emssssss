@@ -3,18 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Detail</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-top: 6px solid #003366;
+        }
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .profile-header h2 {
+            color: #003366;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .profile-header p {
+            color: #555;
+        }
+        .profile-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .profile-info div {
+            flex: 1;
+            padding: 10px;
+        }
+        .profile-info label {
+            font-weight: bold;
+            color: #003366;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .profile-info p {
+            font-size: 16px;
+            color: #333;
+        }
+        .profile-picture {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-picture img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid #003366;
+        }
+        .change-picture {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .change-picture input[type="file"] {
+            display: none;
+        }
+        .change-picture label {
+            padding: 10px 20px;
+            background-color: #003366;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .change-picture label:hover {
+            background-color: #002244;
+        }
+        .action-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .action-buttons a {
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #003366;
+            color: #fff;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .action-buttons a:hover {
+            background-color: #002244;
+        }
+    </style>
 </head>
 <body>
-    <h1>Employee Details</h1>
-    <p><strong>Name:</strong> {{ employee.name }}</p>
-    <p><strong>Email:</strong> {{ employee.email }}</p>
-    <p><strong>Position:</strong> {{ employee.position }}</p>
-    <p><strong>Date Joined:</strong> {{ employee.date_joined }}</p>
 
-    <a href="{% url 'employee_edit' employee.id %}">Edit</a> |
-    <a href="{% url 'employee_delete' employee.id %}">Delete</a>
-    <br><br>
-    <a href="{% url 'employee_list' %}">Back to Employee List</a>
+    <div class="profile-container">
+        <div class="profile-header">
+            <h2>Employee Profile</h2>
+            <p>Employee ID: {{ employee.id }}</p>
+        </div>
+
+        <div class="profile-picture">
+            <img src="{{ employee.profile_picture.url }}" alt="Profile Picture">
+        </div>
+
+        <div class="change-picture">
+            <input type="file" id="profilePicInput" accept="image/*">
+            <label for="profilePicInput">Change Profile Picture</label>
+        </div>
+
+        <div class="profile-info">
+            <div>
+                <label>Name:</label>
+                <p>{{ employee.name }}</p>
+            </div>
+            <div>
+                <label>Email:</label>
+                <p>{{ employee.email }}</p>
+            </div>
+        </div>
+
+        <div class="profile-info">
+            <div>
+                <label>Position:</label>
+                <p>{{ employee.position }}</p>
+            </div>
+            <div>
+                <label>Department:</label>
+                <p>{{ employee.department }}</p>
+            </div>
+        </div>
+        <div class="profile-info">
+            <div>
+                <label>Date of Joining:</label>
+                <p>{{ employee.date_joined }}</p>
+            </div>
+            <div>
+                <label>Status:</label>
+                <p>{{ employee.status }}</p>
+            </div>
+        </div>
+
+        <div class="profile-info">
+            <div>
+                <label>Salary:</label>
+                <p>{{ employee.salary }}</p>
+            </div>
+            <div>
+                <label>Attendance:</label>
+                <p>{{ employee.attendance }}%</p>
+            </div>
+        </div>
+
+        <div class="profile-info">
+            <div>
+                <label>Remaining Leaves:</label>
+                <p>{{ employee.remaining_leaves }}</p>
+            </div>
+            <div>
+                <label>Time In:</label>
+                <p>{{ employee.time_in }}</p>
+            </div>
+        </div>
+
+        <div class="profile-info">
+            <div>
+                <label>Time Out:</label>
+                <p>{{ employee.time_out }}</p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="{% url 'edit_employee' employee.id %}">Edit Profile</a>
+            <a href="{% url 'employee_list' %}">Back to List</a>
+        </div>
+    </div>
+
 </body>
 </html>
